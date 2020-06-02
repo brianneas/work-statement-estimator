@@ -15,21 +15,15 @@
         <input type="submit" value="Submit">
       </form>
       <br>
-      <table style="width:75%">
+      <div>
+         <button onclick="addRow()">Add Row</button>
+         <button onclick="deleteRow()">Delete Row</button>
+      </div>
+      <table style="width:75%" id="table">
          <tr>
             <th>Part Number</th>
             <th>Part Type</th>
             <th>Complexity</th>
-         </tr>
-         <tr>
-            <td contenteditable='true'></td>
-            <td contenteditable='true'></td>
-            <td contenteditable='true'></td>
-         </tr>
-         <tr>
-            <td contenteditable='true'></td>
-            <td contenteditable='true'></td>
-            <td contenteditable='true'></td>
          </tr>
       </table>
    </body>
