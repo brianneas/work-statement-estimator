@@ -16,11 +16,13 @@
       </form>
       <br>
       <div>
-         <button onclick="addRow()">Add Row</button>
-         <button onclick="deleteRow()">Delete Row</button>
+         <button id="addButton" onclick="addRow()">Add Row</button>
+         <button id="deleteButton" onclick="deleteRow()">Delete Row</button>
+         <button onclick="editRows()">Edit Rows</button>
       </div>
+      <br>
       <table style="width:75%" id="table">
-         <tr>
+         <tr class="tableRow">
             <th>Part Number</th>
             <th>Part Type</th>
             <th>Complexity</th>
