@@ -4,7 +4,7 @@ const rowClass = 'tableRow'
 const buttonIdPrefix = 'button_'
 const editButtonClass = 'editButton'
 
-function addRow() {
+function createRow() {
    const newRow = $('<tr></tr>')
    newRow.addClass(rowClass)
 
@@ -33,7 +33,19 @@ function addRow() {
 
    newRow.append($('<td></td>').append(complexitySelection))
 
-   $("#table").append(newRow)
+   return newRow
+}
+
+function addRows() {
+   const numberOfAddedRows = $('#numberOfAddedRows').val()
+
+   if (!isNaN(numberOfAddedRows)) {
+      for (var i = 0; i < numberOfAddedRows; i++) {
+         $("#table").append(createRow())
+      }
+   } else {
+      alert('Invalid Number of Rows Entered')
+   }
 }
 
 function deleteRow() {
