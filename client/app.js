@@ -8,6 +8,18 @@ function submitChange() {
    const changeNumber = $('#changeNumber').val()
    const changeNumberRequest = { 'changeNumber': changeNumber }
 
+   // $.get({
+   //    url: '/change-query',
+   //    data: JSON.stringify(changeNumberRequest),
+   //    dataType: "json"
+   // })
+   //    .done(parts => {
+   //       console.log(parts)
+   //    })
+   //    .fail(xhr => {
+   //       console.log('Error loading change.', xhr.responseText)
+   //    })
+
    $.post({
       url: '/change-query',
       data: JSON.stringify(changeNumberRequest),
@@ -15,8 +27,8 @@ function submitChange() {
       'content-type': 'application/json'
    }
    })
-   .done(() => {
-      // populate table
+   .done(parts => {
+      console.log(parts)
    })
    .fail(xhr => {
       // TODO Come up with a message to the user.
