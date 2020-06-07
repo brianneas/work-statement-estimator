@@ -4,6 +4,26 @@ const rowClass = 'tableRow'
 const buttonIdPrefix = 'button_'
 const editButtonClass = 'editButton'
 
+function submitChange() {
+   const changeNumber = $('#changeNumber').val()
+   const changeNumberRequest = { 'changeNumber': changeNumber }
+
+   $.post({
+      url: '/change-query',
+      data: JSON.stringify(changeNumberRequest),
+      headers: {
+      'content-type': 'application/json'
+   }
+   })
+   .done(() => {
+      // populate table
+   })
+   .fail(xhr => {
+      // TODO Come up with a message to the user.
+      console.log('Error sending data to server.', xhr.responseText)
+   })
+}
+
 function createRow() {
    const newRow = $('<tr></tr>')
    newRow.addClass(rowClass)
