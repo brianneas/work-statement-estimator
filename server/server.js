@@ -11,7 +11,6 @@ app.use(express.static('../client'))
 
 app.post('/change-query', (req, res) => {
    const changeNumber = req.body.changeNumber
-   console.log(changeNumber)
 
    const query =
       `SELECT part.partNumber, partType.partType, complexity.complexity
@@ -29,23 +28,6 @@ app.post('/change-query', (req, res) => {
 
       res.json(rows)
    })
-
-   // res.json({ 'changeNumber' : 'ELRE123' })
-
-
-  // db.run('INSERT INTO activity (user_id, name) VALUES (?, ?);', req.currentUserId, activity.name, err => {
-  //   if (err) {
-  //     if (err.code === 'SQLITE_CONSTRAINT') {
-  //       res.status(400).end('Activity already exists in database.')
-  //       return
-  //     }
-  //
-  //     res.status(500).json({ message: 'Database error.', err })
-  //     return
-  //   }
-  //
-  //   res.end()
-  // })
 })
 
 app.get('*', (req, res) => {

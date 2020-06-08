@@ -8,18 +8,6 @@ function submitChange() {
    const changeNumber = $('#changeNumber').val()
    const changeNumberRequest = { 'changeNumber': changeNumber }
 
-   // $.get({
-   //    url: '/change-query',
-   //    data: JSON.stringify(changeNumberRequest),
-   //    dataType: "json"
-   // })
-   //    .done(parts => {
-   //       console.log(parts)
-   //    })
-   //    .fail(xhr => {
-   //       console.log('Error loading change.', xhr.responseText)
-   //    })
-
    $.post({
       url: '/change-query',
       data: JSON.stringify(changeNumberRequest),
@@ -28,7 +16,7 @@ function submitChange() {
    }
    })
    .done(parts => {
-      console.log(parts)
+      populateParts(parts)
    })
    .fail(xhr => {
       // TODO Come up with a message to the user.
@@ -36,14 +24,29 @@ function submitChange() {
    })
 }
 
-function createRow() {
+function populateParts(parts) {
+   parts.forEach((part, i) => {
+      $("#table").append(createRow(part))
+   })
+}
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0
+}
+
+function createRow(part) {
    const newRow = $('<tr></tr>')
    newRow.addClass(rowClass)
 
    // Create text cell to input part number
-   const newCell = $('<td></td>')
-   newCell.attr("contenteditable", true)
-   newRow.append(newCell)
+   const partNumber = $('<td></td>')
+   partNumber.attr("contenteditable", true)
+
+   if (!isEmpty(part)) {
+      partNumber.html(part.partNumber)
+   }
+
+   newRow.append(partNumber)
 
    // add part type options
    const partOptions = ['Detail', 'Assembly', 'Module']
@@ -52,6 +55,10 @@ function createRow() {
    partOptions.forEach((partType, i) => {
       partSelection.append($('<option></option>').text(partType))
    })
+
+   if (!isEmpty(part)) {
+      partSelection.val(part.partType)
+   }
 
    newRow.append($('<td></td>').append(partSelection))
 
@@ -63,6 +70,10 @@ function createRow() {
       complexitySelection.append($('<option></option>').text(complexityType))
    })
 
+   if (!isEmpty(part)) {
+      complexitySelection.val(part.complexity)
+   }
+
    newRow.append($('<td></td>').append(complexitySelection))
 
    return newRow
@@ -73,7 +84,7 @@ function addRows() {
 
    if (!isNaN(numberOfAddedRows)) {
       for (var i = 0; i < numberOfAddedRows; i++) {
-         $("#table").append(createRow())
+         $("#table").append(createRow({}))
       }
    } else {
       alert('Invalid Number of Rows Entered')
