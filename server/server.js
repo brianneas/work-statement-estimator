@@ -9,6 +9,21 @@ const app = express()
 app.use(express.json())
 app.use(express.static('../client'))
 
+app.get('/query-part-types', (req, res) => {
+   console.log("Success")
+
+   const query = `SELECT * FROM partType;`
+
+   db.all(query, (err, rows) => {
+      if (err) {
+         res.status(500).json({ message: 'Database error.', err })
+         return
+      }
+
+      res.json(rows)
+   })
+})
+
 app.post('/change-query', (req, res) => {
    const changeNumber = req.body.changeNumber
 

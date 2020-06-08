@@ -16,10 +16,9 @@ function createPartNumberEntry(newRow, part) {
 
 function createPartTypeEntry(newRow, part) {
    // add part type options
-   const partOptions = ['Detail', 'Assembly', 'Module']
    const partSelection = $('<select></select>')
 
-   partOptions.forEach((partType, i) => {
+   partTypes.forEach((partType) => {
       partSelection.append($('<option></option>').text(partType))
    })
 
