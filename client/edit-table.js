@@ -1,9 +1,17 @@
+function createEmptyRow() {
+   $("#table").append(createRow({}))
+}
+
 function addRows() {
    const numberOfAddedRows = $('#numberOfAddedRows').val()
 
    if (!isNaN(numberOfAddedRows)) {
-      for (var i = 0; i < numberOfAddedRows; i++) {
-         $("#table").append(createRow({}))
+      if (numberOfAddedRows === "") {
+         createEmptyRow() // create a row even if there is a blank
+      } else {
+         for (var i = 0; i < numberOfAddedRows; i++) {
+            createEmptyRow()
+         }
       }
    } else {
       alert('Invalid Number of Rows Entered')
