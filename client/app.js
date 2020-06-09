@@ -1,9 +1,3 @@
-const rowIdPrefix = 'row_'
-const rowClass = 'tableRow'
-
-const buttonIdPrefix = 'button_'
-const editButtonClass = 'editButton'
-
 const partTypes = []
 const complexityOptions = []
 
