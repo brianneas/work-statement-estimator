@@ -66,7 +66,7 @@ function renumberButtons() {
    })
 }
 
-function enableEditMode() {
+function disableEditMode() {
    const tableRows = $("#table").find('tr')
 
    tableRows.find("th:first-child").remove()
@@ -78,7 +78,7 @@ function enableEditMode() {
    $('#table').removeClass('editMode')
 }
 
-function disableEditMode() {
+function enableEditMode() {
    $('tr.' + rowClass).each(function(index) {
       if (index === 0) {
          $(this).prepend('<th>Remove</th>')
@@ -106,8 +106,8 @@ function disableEditMode() {
 
 function editRows() {
    if ($('#table').hasClass('editMode')) {
-      enableEditMode()
-   } else {
       disableEditMode()
+   } else {
+      enableEditMode()
    }
 }
