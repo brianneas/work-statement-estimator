@@ -31,7 +31,6 @@ function createPartTypeEntry(newRow, part) {
 
 function createComplexityEntry(newRow, part) {
    // add complexity options
-   const complexityOptions = ['Simple', 'Average', 'Complex']
    const complexitySelection = $('<select></select>')
 
    complexityOptions.forEach((complexityType, i) => {

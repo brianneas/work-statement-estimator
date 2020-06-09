@@ -5,6 +5,7 @@ const buttonIdPrefix = 'button_'
 const editButtonClass = 'editButton'
 
 const partTypes = []
+const complexityOptions = []
 
 function queryPartTypes() {
    $.get('/query-part-types')
@@ -18,6 +19,19 @@ function queryPartTypes() {
       })
 }
 
+function queryComplexityOptions() {
+   $.get('/query-complexity-options')
+      .done(complexities => {
+         complexities.forEach((complexity) => {
+            complexityOptions.push(complexity.complexity)
+         })
+      })
+      .fail(xhr => {
+         console.log('Error loading part types.', xhr.responseText)
+      })
+}
+
 $(document).ready(
-   queryPartTypes()
+   queryPartTypes(),
+   queryComplexityOptions()
 )
