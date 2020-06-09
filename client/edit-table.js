@@ -17,6 +17,15 @@ function deleteRow() {
    }
 }
 
+function clearRows() {
+   // remove all but the line with headers
+   $('tr').each(function (index) {
+      if (index !== 0) {
+         $(this).remove()
+      }
+   })
+}
+
 function removeCurrentRow(thisButton) {
    // gets the button id and gets the numerical number of the button from it
    rowNumber = thisButton.id.split('_')[1]
