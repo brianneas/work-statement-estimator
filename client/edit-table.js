@@ -32,6 +32,8 @@ function deleteRow() {
 }
 
 function clearRows() {
+   confirm("Press OK to clear rows.")
+
    // remove all but the line with headers
    $('tr').each(function (index) {
       if (index !== 0) {
