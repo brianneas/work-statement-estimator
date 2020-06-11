@@ -1,3 +1,5 @@
+const saveChangesButtonId = 'saveChangesButton'
+
 function submitChange() {
    const changeNumber = $('#changeNumber').val()
    const changeNumberRequest = { 'changeNumber': changeNumber }
@@ -18,8 +20,27 @@ function submitChange() {
    })
 }
 
+function createSaveChangesButton() {
+   const saveButton = $("<button></button")
+   saveButton.html("Save Changes")
+   saveButton.attr('id', saveChangesButtonId)
+   saveButton.click(saveChanges)
+
+   return saveButton
+}
+
+function saveChanges() {
+   $("#changeNumber").attr("disabled", false)
+   $("#submitChangeNumberButton").attr("disabled", false)
+   $(this).remove()
+}
+
 function populateParts(parts) {
    parts.forEach((part, i) => {
       $("#table").append(createRow(part))
    })
+
+   $("#changeNumber").attr("disabled", true)
+   $("#submitChangeNumberButton").attr("disabled", true)
+   $(".importChange").append(createSaveChangesButton())
 }
